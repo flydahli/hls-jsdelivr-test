@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLS Proxy Embed</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        .video-container { width: 100%; max-width: 800px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360"></video>
+    </div>
+
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12/dist/hls.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('my-video');
+            const hlsUrl = 'http://79.127.215.230:80/stream/328/index.m3u8?username=gomz7dvNFr&password=H7jjZTBXzI';
+            
+            // Function to handle errors
+            function handleError(error) {
+                console.error('Error:', error);
+            }
+            
+            // Initialize the player
+            function initPlayer() {
+                if (Hls.isSupported()) {
+                    const hls = new Hls();
+                    hls.loadSource(hlsUrl);
+                    hls.attachMedia(video);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        // video.play(); // Uncomment for autoplay (with browser restrictions)
+                    });
+                    
+                    hls.on(Hls.Events.ERROR, function(event, data) {
+                        if (data.fatal) {
+                            handleError(data);
+                        }
+                    });
+                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                    // Native HLS support (Safari)
+                    video.src = hlsUrl;
+                } else {
+                    console.log('HLS is not supported in this browser');
+                }
+            }
+            
+            // Initialize video.js player
+            const player = videojs('my-video', {
+                fluid: true
+            });
+            
+            player.ready(function() {
+                initPlayer();
+            });
+        });
+    </script>
+</body>
+</html>
