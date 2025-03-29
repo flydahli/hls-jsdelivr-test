@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLS via jsDelivr Test</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; }
+        .video-container { margin: 20px 0; }
+        #status { padding: 10px; background: #f5f5f5; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HLS Streaming via GitHub + jsDelivr Test</h1>
+        
+        <div class="video-container">
+            <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360">
+                <source id="hlsSource" src="video/playlist.m3u8" type="application/x-mpegURL">
+            </video>
+        </div>
+        
+        <div id="status">Status: Loading player...</div>
+        
+        <div>
+            <h3>How This Works:</h3>
+            <ul>
+                <li>Original stream source: <code>http://79.127.215.230:80/stream/328/index.m3u8?username=gomz7dvNFr&password=H7jjZTBXzI</code></li>
+                <li>Our GitHub Actions workflow fetches segments every 5 minutes</li>
+                <li>Segments are renamed with .js extensions and stored in the repository</li>
+                <li>Content is served through jsDelivr's global CDN with no bandwidth limits</li>
+                <li>When this repo is on GitHub, the content will be available at: <code>https://cdn.jsdelivr.net/gh/[username]/[repo]@[branch]/video/playlist.m3u8</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12/dist/hls.min.js"></script>
+    <script src="player.js"></script>
+</body>
+</html>

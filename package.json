@@ -1,0 +1,21 @@
+{
+  "name": "hls-jsdelivr-proxy",
+  "version": "1.0.0",
+  "description": "Proxy HLS streams through GitHub and jsDelivr for unlimited bandwidth",
+  "main": "fetch-hls.js",
+  "scripts": {
+    "fetch": "node fetch-hls.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hls",
+    "jsdelivr",
+    "streaming",
+    "proxy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

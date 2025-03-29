@@ -1,0 +1,15 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:784179433
+#EXT-X-ALLOW-CACHE:YES
+#EXT-X-TARGETDURATION:2
+#EXTINF:1.961667,
+video/segment_6.js
+#EXTINF:1.961667,
+video/segment_8.js
+#EXTINF:1.961667,
+video/segment_10.js
+#EXTINF:1.961667,
+video/segment_12.js
+#EXTINF:1.961667,
+video/segment_14.js
